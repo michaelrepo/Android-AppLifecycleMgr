@@ -27,8 +27,8 @@ public class ApplicationLifecycleProxyClassCreator {
 
     private static final String FIELD_APPLICATION_LIFECYCLE_CALLBACK = "mApplicationLifecycleCallback";
 
-    public static boolean generateProxyClassCode(TypeElement typeElement, Filer filer, TypeMirror contextType) {
-        TypeSpec appLifecycleProxyClass = getApplicationLifecycleProxyClass(typeElement, contextType);
+    public static boolean generateProxyClassCode(TypeElement typeElement, Filer filer, TypeMirror contextType, TypeMirror bundleType) {
+        TypeSpec appLifecycleProxyClass = getApplicationLifecycleProxyClass(typeElement, contextType, bundleType);
         JavaFile javaFile = JavaFile.builder(ApplicationLifecycleConfig.PROXY_CLASS_PACKAGE_NAME, appLifecycleProxyClass).build();
         try {
             javaFile.writeTo(filer);
@@ -39,14 +39,14 @@ public class ApplicationLifecycleProxyClassCreator {
         }
     }
 
-    private static TypeSpec getApplicationLifecycleProxyClass(TypeElement typeElement, TypeMirror contextType) {
+    private static TypeSpec getApplicationLifecycleProxyClass(TypeElement typeElement, TypeMirror contextType, TypeMirror bundleType) {
         return TypeSpec.classBuilder(getProxyClassName(typeElement.getSimpleName().toString()))
                 .addSuperinterface(TypeName.get(typeElement.getInterfaces().get(0)))
                 .addModifiers(Modifier.PUBLIC)
                 .addField(TypeName.get(typeElement.getInterfaces().get(0)), FIELD_APPLICATION_LIFECYCLE_CALLBACK, Modifier.PRIVATE, Modifier.FINAL)
                 .addMethod(getConstructorMethod(typeElement))
                 .addMethod(getPriorityMethod())
-                .addMethod(getOnCreateMethod(contextType))
+                .addMethod(getOnCreateMethod(contextType, bundleType))
                 .addMethod(getOnLowMemoryMethod())
                 .addMethod(getOnTerminateMethod())
                 .addMethod(getOnTrimMemoryMethod())
@@ -102,13 +102,14 @@ public class ApplicationLifecycleProxyClassCreator {
                 .build();
     }
 
-    private static MethodSpec getOnCreateMethod(TypeMirror contextType) {
+    private static MethodSpec getOnCreateMethod(TypeMirror contextType, TypeMirror bundleType) {
         return MethodSpec.methodBuilder(METHOD_ON_CREATE)
                 .addModifiers(Modifier.PUBLIC)
                 .returns(void.class)
                 .addAnnotation(Override.class)
                 .addParameter(TypeName.get(contextType), "context")
-                .addStatement("this.$N.$N($N)", FIELD_APPLICATION_LIFECYCLE_CALLBACK, METHOD_ON_CREATE, "context")
+                .addParameter(TypeName.get(bundleType), "bundle")
+                .addStatement("this.$N.$N($N)", FIELD_APPLICATION_LIFECYCLE_CALLBACK, METHOD_ON_CREATE, "context,bundle")
                 .build();
     }
 

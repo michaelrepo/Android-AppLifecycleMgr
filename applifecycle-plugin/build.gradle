@@ -6,7 +6,7 @@ apply plugin: 'groovy'
 // JitPack Maven （发到本地maven时关闭）
 apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
-group='com.github.hufeiyang'
+group='com.github.micahelrepo'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

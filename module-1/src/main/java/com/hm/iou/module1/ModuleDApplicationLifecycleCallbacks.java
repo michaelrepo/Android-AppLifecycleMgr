@@ -1,6 +1,7 @@
 package com.hm.iou.module1;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.hm.iou.lifecycle.annotation.AppLifecycle;
@@ -18,7 +19,7 @@ public class ModuleDApplicationLifecycleCallbacks implements IApplicationLifecyc
     }
 
     @Override
-    public void onCreate(Context context) {
+    public void onCreate(Context context, Bundle bundle) {
         Log.d("AppLifecycle", "onCreate(): this is in ModuleDApplicationLifecycleCallbacks.");
     }
 

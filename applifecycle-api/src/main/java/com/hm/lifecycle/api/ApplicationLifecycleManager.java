@@ -1,6 +1,7 @@
 package com.hm.lifecycle.api;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.text.TextUtils;
 
 
@@ -51,13 +52,13 @@ public class ApplicationLifecycleManager {
         }
     }
 
-    public static void onCreate(Context context) {
+    public static void onCreate(Context context, Bundle bundle) {
         if (lifecycleCallbacks.isEmpty()) {
             return;
         }
         Collections.sort(lifecycleCallbacks, new ApplicationLifecycleComparator());
         for (IApplicationLifecycleCallbacks callbacks : lifecycleCallbacks) {
-            callbacks.onCreate(context);
+            callbacks.onCreate(context, bundle);
         }
     }
 

@@ -57,6 +57,7 @@ public class ApplicationLifecycleProcessor extends AbstractProcessor {
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(AppLifecycle.class);
 
         TypeMirror typeContext = mElements.getTypeElement(ApplicationLifecycleConfig.CONTEXT).asType();
+        TypeMirror typeBundle = mElements.getTypeElement(ApplicationLifecycleConfig.BUNDLE).asType();
 
         for (Element element : elements) {
             if (!element.getKind().isClass()) {
@@ -83,7 +84,7 @@ public class ApplicationLifecycleProcessor extends AbstractProcessor {
 
             System.out.println(fullClassName+"start to generate proxy class code.");
 
-            ApplicationLifecycleProxyClassCreator.generateProxyClassCode(typeElement, mFiler, typeContext);
+            ApplicationLifecycleProxyClassCreator.generateProxyClassCode(typeElement, mFiler, typeContext,typeBundle);
         }
 
         return true;
