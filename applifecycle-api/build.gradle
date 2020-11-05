@@ -1,3 +1,5 @@
+import com.google.protobuf.Api
+
 apply plugin: 'com.android.library'
 
 // JitPack Maven
@@ -37,7 +39,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compileOnly 'com.github.michaelrepo:AppStart:1.0.2'
-
+    api project(':applifecycle-annotation')
 //    implementation project(':applifecycle-annotation')
 //    api 'com.github.michaelrepo.Android-AppLifecycleMgr:applifecycle-annotation:1.0.5'
 
