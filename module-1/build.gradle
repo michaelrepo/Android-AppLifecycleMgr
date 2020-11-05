@@ -1,16 +1,17 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 28
+
 
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -26,14 +27,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.github.michaelrepo:AppStart:1.0.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation project(':applifecycle-annotation')
+//    implementation project(':applifecycle-annotation')
     implementation project(':applifecycle-api')
     annotationProcessor project(':applifecycle-compiler')
 
-//    implementation 'com.github.michaelrepo.Android-AppLifecycleMgr:applifecycle-api:1.0.5'
-//    annotationProcessor 'com.github.michaelrepo.Android-AppLifecycleMgr:applifecycle-compiler:1.0.5'
+//    implementation 'com.github.hufeiyang.Android-AppLifecycleMgr:applifecycle-api:1.0.4'
+//    annotationProcessor 'com.github.hufeiyang.Android-AppLifecycleMgr:applifecycle-compiler:1.0.4'
 
 }

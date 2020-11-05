@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.hm.iou.lifecycle.annotation.AppLifecycle;
 import com.hm.lifecycle.api.IApplicationLifecycleCallbacks;
+import com.performance.appstart.TaskDispatcher;
 
 /**
  * Created by hjy on 2018/10/23.
@@ -19,8 +20,8 @@ public class ModuleAApplicationLifecycleCallbacks implements IApplicationLifecyc
     }
 
     @Override
-    public void onCreate(Context context, Bundle bundle) {
-        Log.i("bundleA",bundle.getString("dd"));
+    public void onCreate(Context context, TaskDispatcher taskDispatcher, Bundle bundle) {
+        Log.i("bundleA", bundle.getString("dd"));
         Log.d("AppLifecycle", "onCreate(): this is in ModuleAApplicationLifecycleCallbacks.");
     }
 

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.Bundle;
 
 import com.hm.lifecycle.api.ApplicationLifecycleManager;
+import com.performance.appstart.TaskDispatcher;
 
 public class MyApplication extends Application {
     @Override
@@ -14,6 +15,7 @@ public class MyApplication extends Application {
         ApplicationLifecycleManager.init();
         Bundle bundle = new Bundle();
         bundle.putString("dd", "哈哈");
-        ApplicationLifecycleManager.onCreate(this, bundle);
+        TaskDispatcher.init(this);
+        ApplicationLifecycleManager.onCreate(this, TaskDispatcher.createInstance(), bundle);
     }
 }
