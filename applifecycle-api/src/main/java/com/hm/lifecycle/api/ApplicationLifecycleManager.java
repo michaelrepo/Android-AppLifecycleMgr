@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 
+import com.performance.appstart.TaskDispatcher;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,13 +54,13 @@ public class ApplicationLifecycleManager {
         }
     }
 
-    public static void onCreate(Context context, Bundle bundle) {
+    public static void onCreate(Context context, TaskDispatcher taskDispatcher, Bundle bundle) {
         if (lifecycleCallbacks.isEmpty()) {
             return;
         }
         Collections.sort(lifecycleCallbacks, new ApplicationLifecycleComparator());
         for (IApplicationLifecycleCallbacks callbacks : lifecycleCallbacks) {
-            callbacks.onCreate(context, bundle);
+            callbacks.onCreate(context, taskDispatcher, bundle);
         }
     }
 

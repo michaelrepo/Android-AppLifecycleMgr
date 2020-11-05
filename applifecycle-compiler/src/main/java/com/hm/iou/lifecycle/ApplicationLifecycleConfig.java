@@ -24,6 +24,7 @@ public class ApplicationLifecycleConfig {
     public static final String APPLICATION_LIFECYCLE_CALLBACK_SIMPLE_NAME = "IApplicationLifecycleCallbacks";
 
     public static final String CONTEXT = "android.content.Context";
+    public static final String TASK_DISPATCHER = "com.performance.appstart.TaskDispatcher";
 
     public static final String BUNDLE = "android.os.Bundle";
 }

@@ -3,6 +3,8 @@ package com.hm.lifecycle.api;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.performance.appstart.TaskDispatcher;
+
 /**
  * Created by hjy on 2018/10/23.
  */
@@ -15,7 +17,7 @@ public interface IApplicationLifecycleCallbacks {
 
     int getPriority();
 
-    void onCreate(Context context, Bundle bundle);
+    void onCreate(Context context, TaskDispatcher taskDispatcher, Bundle bundle);
 
     void onTerminate();
 

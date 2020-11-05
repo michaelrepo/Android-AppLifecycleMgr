@@ -57,6 +57,7 @@ public class ApplicationLifecycleProcessor extends AbstractProcessor {
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(AppLifecycle.class);
 
         TypeMirror typeContext = mElements.getTypeElement(ApplicationLifecycleConfig.CONTEXT).asType();
+        TypeMirror typeTaskDispatcher = mElements.getTypeElement(ApplicationLifecycleConfig.TASK_DISPATCHER).asType();
         TypeMirror typeBundle = mElements.getTypeElement(ApplicationLifecycleConfig.BUNDLE).asType();
 
         for (Element element : elements) {
@@ -82,9 +83,9 @@ public class ApplicationLifecycleProcessor extends AbstractProcessor {
                 throw new RuntimeException(typeElement.getQualifiedName() + " must implements interface " + ApplicationLifecycleConfig.APPLICATION_LIFECYCLE_CALLBACK_QUALIFIED_NAME);
             }
 
-            System.out.println(fullClassName+"start to generate proxy class code.");
+            System.out.println(fullClassName + "start to generate proxy class code.");
 
-            ApplicationLifecycleProxyClassCreator.generateProxyClassCode(typeElement, mFiler, typeContext,typeBundle);
+            ApplicationLifecycleProxyClassCreator.generateProxyClassCode(typeElement, mFiler, typeContext, typeTaskDispatcher, typeBundle);
         }
 
         return true;
