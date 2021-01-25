@@ -32,7 +32,7 @@ dependencies {
 //    implementation project(':applifecycle-annotation')
     implementation project(':applifecycle-api')
     annotationProcessor project(':applifecycle-compiler')
-    implementation 'com.github.michaelrepo:AppStart:1.0.2'
+    implementation 'com.github.michaelrepo:AppStart:1.0.7'
 
 //    implementation 'com.github.hufeiyang.Android-AppLifecycleMgr:applifecycle-api:1.0.4'
 //    annotationProcessor 'com.github.hufeiyang.Android-AppLifecycleMgr:applifecycle-compiler:1.0.4'

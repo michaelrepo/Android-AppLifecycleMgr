@@ -15,7 +15,7 @@ public class MyApplication extends Application {
         ApplicationLifecycleManager.init();
         Bundle bundle = new Bundle();
         bundle.putString("dd", "哈哈");
-        TaskDispatcher.init(this);
+        TaskDispatcher.init(this,BuildConfig.DEBUG);
         ApplicationLifecycleManager.onCreate(this, TaskDispatcher.createInstance(), bundle);
     }
 }

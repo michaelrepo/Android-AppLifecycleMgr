@@ -44,6 +44,11 @@ class AppLifecycleTransform extends Transform {
     void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
         super.transform(transformInvocation)
 
+        if (!transformInvocation.isIncremental) {
+            outputProvider.deleteAll()
+            println " AppLifecycleTransform delete old files before start>"
+        }
+
         println " AppLifecycleTransform start to transform-------------->>>>>>>"
 
         def appLifecycleCallbackList = []
