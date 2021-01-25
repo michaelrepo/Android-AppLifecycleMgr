@@ -44,7 +44,7 @@ class AppLifecycleTransform extends Transform {
     void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
         super.transform(transformInvocation)
 
-        if (!transformInvocation.isIncremental) {
+        if (!transformInvocation.incremental) {
             outputProvider.deleteAll()
             println " AppLifecycleTransform delete old files before start>"
         }
